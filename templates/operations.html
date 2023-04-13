@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoDigest</title>
+    <link rel="stylesheet" type="text/css" href="/static/operations.css" /></link>
+</head>
+<body>
+  <header>
+    <h1>VideoDigest</h1>
+    <button class="top-right-btn">Log Out</button>
+    <a href="#" class="anchor">User</a>
+  </header>
+
+  <h2 class="time" id="time"></h2>
+
+  <button class="nxt">Save</button>
+
+  <button class="run">Run</button>
+
+  <div class="query">Queries : </div>
+
+  <div class="cont">
+    <div class="menu">
+      <button class="toggle">Select a Query</button>
+      <ul class="list">
+        <li class="list-item" style="--delay:0.2s">CAR</li>
+        <li class="list-item" style="--delay:0.4s">RED</li>
+        <li class="list-item" style="--delay:0.6s">BIKE</li>
+        <li class="list-item" style="--delay:0.6s">GREEN</li>  
+      </ul>
+    </div>
+  </div>
+
+  <video class='video' controls="controls" preload='none' width="600" poster="https://assets.codepen.io/32795/poster.png">
+    <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
+    <source id='webm' src="http://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm' />
+    <source id='ogv' src="http://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg' />
+    <!--Track to be used for accessibility using the VTT standard. 
+      See https://www.html5rocks.com/en/tutorials/track/basics/ for more information on how to use text tracks-->
+    <track kind="subtitles" label="English subtitles" src="subtitles_en.vtt" srclang="en" default></track>
+    <!-- We can also add more than one text track and let the user choose which one to play. There is now way to 
+    currently do this with the built in controls so it'll have to be scripted -->
+    <track kind="subtitles" label="Deutsche Untertitel" src="subtitles_de.vtt" srclang="de"></track>
+    <!--We're not using Flash as a fallback option.-->
+    <p>Your user agent does not support the HTML5 Video element.</p>
+  </video>
+
+  <button class="Back">Back</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

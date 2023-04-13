@@ -1,13 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/static/script/style"></script>
-    <title>Document</title>
-</head>
-<body class="body">
+	<title>VideoDigest</title>
+	<link rel="">
     
-</body>
-</html>
+</head>
+<body>
+	<header>
+		<div class="header-left">
+			<div class="header-title">VIDEO DIGEST</div>
+		</div>
+		<div class="header-right">
+			<div class="header-username">{{ username }}</div>
+			<button class="logout-button">Logout</button>
+		</div>
+	</header>
+	<div class="container">
+		<div class="container-left">
+			<div class="upload-box">
+				<div class="upload-label">Select file to upload:</div>
+				<input type="file" class="upload-input">
+				<div class="upload-progress">
+					<div class="progress-bar"></div>
+				</div>
+			</div>
+		</div>
+		<div class="container-right">
+			<p>This is the right column.</p>
+		</div>
+	</div>
+	<button class="next-button">Next</button>
+	<script>
+		const uploadInput = document.querySelector('.upload-input');
+		const progressBar =

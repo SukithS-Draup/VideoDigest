@@ -11,19 +11,22 @@
          <div class="text">
             SIGNUP
          </div>
-         <form action="{{ url_for('login') }}" method="POST">
+         <form action="{{ url_for('submit_signup') }}" method="POST" autocomplete="off">
             <div class="field">
                <div class="fas fa-envelope"></div>
-               <input type="text" placeholder="Email or Phone">
+               <input type="text" name="username" placeholder="Email or Phone">
             </div>
             <div class="field">
                <div class="fas fa-lock"></div>
-               <input type="text" placeholder="Password">
+               <input type="text" name="password" placeholder="Password" autocomplete="off" onfocus="this.removeAttribute('readonly');" readonly>
             </div>
             <div class="field">
                 <div class="fas fa-lock"></div>
-                <input type="password" placeholder="Confirm password" >
+                <input type="password" name="cnf_password" placeholder="Confirm password"onfocus="this.removeAttribute('readonly');" readonly>
             </div>
+            {% if error %}
+            <div class="error">{{ error }}</div>
+            {% endif %}
             <button>SIGNUP</button>
             <div class="link">
                Already a member?

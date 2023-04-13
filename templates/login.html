@@ -14,13 +14,16 @@
          <form action="{{ url_for('submit_login') }}" method="POST">
             <div class="field">
                <div class="fas fa-envelope"></div>
-               <input type="text" placeholder="Email or Phone">
+               <input type="text" name="username" placeholder="Email or Phone" autocomplete="off" onfocus="this.removeAttribute('readonly');" readonly>
             </div>
             <div class="field">
                <div class="fas fa-lock"></div>
-               <input type="password" placeholder="Password">
+               <input type="password" name="password" placeholder="Password" autocomplete="off" onfocus="this.removeAttribute('readonly');" readonly">
             </div>
-            <button>LOGIN</button>
+            {% if error %}
+            <div class="error">{{ error }}</div>
+            {% endif %}
+            <button type="submit">LOGIN</button>
             <div class="link">
                Not a member?
                <a href="{{ url_for('signup') }}">Signup</a>
