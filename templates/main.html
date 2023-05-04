@@ -2,35 +2,52 @@
 <html>
 <head>
 	<title>VideoDigest</title>
-	<link rel="">
+	<link rel="stylesheet" href="/static/css/main.css"/>
+	<title>VideoDigest</title>
+	<script src="/static/js/main.js"></script>
     
 </head>
 <body>
 	<header>
 		<div class="header-left">
-			<div class="header-title">VIDEO DIGEST</div>
+			<div class="header-title">VideoDigest</div>
 		</div>
 		<div class="header-right">
 			<div class="header-username">{{ username }}</div>
-			<button class="logout-button">Logout</button>
+			<form action="/logout">
+				<button class="logout-button" type="logout" name="logout">Logout</button>
+			</form>
 		</div>
 	</header>
 	<div class="container">
 		<div class="container-left">
 			<div class="upload-box">
-				<div class="upload-label">Select file to upload:</div>
-				<input type="file" class="upload-input">
-				<div class="upload-progress">
-					<div class="progress-bar"></div>
-				</div>
+				<div class="upload-label">Select file to upload </div>
+				<p><p>
+				<input class="upload-input" type="file" id="file-upload">
 			</div>
+			<div class="progress-bar-container">
+				<div class="progress-bar"></div>
+			</div>		
+			<form action="{{ url_for('submit_main') }}" method="POST">	  
+			<div class="upload-next">
+				<button class="next-button" id="next" type="submit">Next</button>
+			</div>
+			</form>
 		</div>
 		<div class="container-right">
-			<p>This is the right column.</p>
+			<h3>Recent Projects</h3><br>
+			<a class="recent-link">
+				<div class="tile-container">
+					{% for data_item in project['projects'] %}
+					<div class="tile">
+					<img src="{{ data_item.icon_url }}">
+					<p>{{ data_item.title }}</p>
+					</div>
+					{% endfor %}
+				</div>
+			</a>
 		</div>
 	</div>
-	<button class="next-button">Next</button>
-	<script>
-		const uploadInput = document.querySelector('.upload-input');
-		const progressBar = "progress_bar_functionailty_to_be_added";
-	
+</body>
+</html>
