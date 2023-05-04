@@ -2,11 +2,12 @@ import cv2
 import time
 from tracker import EuclideanDistTracker
 from itertools import zip_longest
+from create_video import create_video
 
 # Create tracker object
 tracker = EuclideanDistTracker()
 
-cap = cv2.VideoCapture("highway.mp4")
+cap = cv2.VideoCapture("./static/video/highway.mp4")
 
 # Object detection from Stable camera
 object_detector = cv2.createBackgroundSubtractorMOG2(history=100, varThreshold=40)
@@ -16,7 +17,7 @@ object_writers = {}
 
 # Get frame rate of the video
 fps = int(cap.get(cv2.CAP_PROP_FPS))
-
+i=0
 while True:
     ret, frame = cap.read()
     if not ret:
@@ -53,8 +54,9 @@ while True:
         #     object_writers[id].write(roi)
 
     cv2.imshow("roi", roi)
-    cv2.imshow("Frame", frame)
-    cv2.imshow("Mask", mask)
+    file="./static/temp_timestamp/frame"+'{:04d}'.format(i)+".jpg"
+    cv2.imwrite(file, roi)
+    i+=1
 
     key = cv2.waitKey(30)
     if key == 27:
@@ -63,5 +65,6 @@ while True:
 # Release video writers and cleanup
 for writer in object_writers.values():
     writer.release()
+create_video("./static/temp_timestamp/","timestamp.mp4")
 cap.release()
 cv2.destroyAllWindows()

@@ -28,9 +28,9 @@ output_file = 'object_positions.csv'
 with open(output_file, 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['ID', 'X', 'Y', 'Width', 'Height', 'Appearance Time (ms)'])
+i=0
 
 while True:
-
     ret, frame = cap.read()
     if not ret:
         break
@@ -77,11 +77,13 @@ while True:
             writer.writerow([id, x, y, w, h, cap.get(cv2.CAP_PROP_POS_MSEC)/1000])
         
     cv2.imshow("roi", roi)
-    cv2.imwrite("frame.jpg", roi)
-    create_video()
+    file="./static/temp_object_detect/frame"+'{:04d}'.format(i)+".jpg"
+    cv2.imwrite(file, roi)
+    i+=1
     key = cv2.waitKey(30)
     if key == 27:
         break
 
+create_video("./static/temp_object_detect/","object_detect.mp4")
 cap.release()
 cv2.destroyAllWindows()
